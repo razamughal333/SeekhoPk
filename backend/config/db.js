@@ -1,4 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const dns = require("dns");
+
+// Force Node's own DNS resolver to use Google DNS.
+// Fixes "querySrv ECONNREFUSED" on Windows machines where antivirus/firewall
+// software interferes with SRV record lookups even though normal browsing works fine.
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const connectDB = async () => {
   try {
