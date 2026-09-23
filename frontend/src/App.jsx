@@ -5,6 +5,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import Home from './pages/Home';
 import CourseListing from './pages/CourseListing';
 import CourseDetail from './pages/CourseDetail';
+import About from './pages/About';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<CourseListing />} />
         <Route path="/courses/:id" element={<CourseDetail />} />
+        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

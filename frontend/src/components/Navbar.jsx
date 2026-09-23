@@ -35,6 +35,9 @@ export default function Navbar() {
           <NavLink to="/courses" className={linkClass}>
             Courses
           </NavLink>
+          <NavLink to="/about" className={linkClass}>
+            About
+          </NavLink>
           {user && (
             <NavLink to={roleHome[user.role]} className={linkClass}>
               Dashboard
