@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
-import CourseRow from '../components/CourseRow';
-import ImageWithFallback from '../components/ImageWithFallback';
-import { getCourses } from '../services/courseService';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
+import CourseRow from "../components/CourseRow";
+import ImageWithFallback from "../components/ImageWithFallback";
+import { getCourses } from "../services/courseService";
 
 const routes = [
-  'Web Development',
-  'Data Science',
-  'Graphic Design',
-  'Digital Marketing',
-  'Spoken English',
-  'Mobile Apps',
+  "Web Development",
+  "Data Science",
+  "Graphic Design",
+  "Digital Marketing",
+  "Spoken English",
+  "Mobile Apps",
 ];
 
 export default function Home() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getCourses()
       .then(({ data }) => setCourses(data.slice(0, 4)))
-      .catch(() => setError('Could not load courses right now.'))
+      .catch(() => setError("Could not load courses right now."))
       .finally(() => setLoading(false));
   }, []);
 
@@ -68,12 +68,12 @@ export default function Home() {
                 <li
                   key={route}
                   className={`flex items-center justify-between px-5 py-3.5 font-display text-lg ${
-                    i !== routes.length - 1 ? 'border-b-2 border-bg/20' : ''
+                    i !== routes.length - 1 ? "border-b-2 border-bg/20" : ""
                   }`}
                 >
                   <span>{route}</span>
                   <span className="font-body text-xs text-bg/50">
-                    {String(i + 1).padStart(2, '0')}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                 </li>
               ))}
@@ -86,7 +86,7 @@ export default function Home() {
       <ImageWithFallback
         src="/images/hero-banner.jpg"
         alt="Students learning on SeekhoPakistan"
-        className="h-48 w-full border-b-2 border-ink object-cover sm:h-64"
+        className="h-72 w-full border-b-2 border-ink object-cover sm:h-96"
       />
 
       {/* Featured courses */}
@@ -107,7 +107,8 @@ export default function Home() {
         {error && <p className="font-body text-ink/60">{error}</p>}
         {!loading && !error && courses.length === 0 && (
           <p className="font-body text-ink/60">
-            No courses yet — check back soon, or log in as an instructor to add one.
+            No courses yet — check back soon, or log in as an instructor to add
+            one.
           </p>
         )}
         {!loading && courses.length > 0 && (
@@ -124,24 +125,26 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3">
           {[
             {
-              step: '01',
-              title: 'Find a course',
-              body: 'Search by category or browse everything on offer, from web development to spoken English.',
+              step: "01",
+              title: "Find a course",
+              body: "Search by category or browse everything on offer, from web development to spoken English.",
             },
             {
-              step: '02',
-              title: 'Enroll',
-              body: 'Create a free account and enroll in one click — no payment gateway required for this build.',
+              step: "02",
+              title: "Enroll",
+              body: "Create a free account and enroll in one click — no payment gateway required for this build.",
             },
             {
-              step: '03',
-              title: 'Track your progress',
-              body: 'Your student dashboard keeps every enrolled course and its progress in one place.',
+              step: "03",
+              title: "Track your progress",
+              body: "Your student dashboard keeps every enrolled course and its progress in one place.",
             },
           ].map((item) => (
             <div key={item.step}>
               <p className="font-display text-2xl text-saffron">{item.step}</p>
-              <h3 className="mt-2 font-display text-xl font-semibold">{item.title}</h3>
+              <h3 className="mt-2 font-display text-xl font-semibold">
+                {item.title}
+              </h3>
               <p className="mt-2 font-body text-sm text-bg/70">{item.body}</p>
             </div>
           ))}
