@@ -26,6 +26,11 @@ const courseSchema = new mongoose.Schema(
       required: [true, 'Course price is required'],
       min: [0, 'Price cannot be negative'],
     },
+    image: {
+      type: String,
+      default: '',
+      trim: true,
+    },
   },
   { timestamps: true }
 );

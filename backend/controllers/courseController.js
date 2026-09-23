@@ -31,7 +31,7 @@ const getCourseById = async (req, res, next) => {
 // @access Private (Instructor, Admin)
 const createCourse = async (req, res, next) => {
   try {
-    const { title, description, category, price } = req.body;
+    const { title, description, category, price, image } = req.body;
 
     if (!title || !description || !category || price === undefined) {
       return res.status(400).json({ message: 'Title, description, category and price are required' });
@@ -42,6 +42,7 @@ const createCourse = async (req, res, next) => {
       description,
       category,
       price,
+      image: image || '',
       instructor: req.user._id, // instructor is always the logged-in user
     });
 
@@ -66,11 +67,12 @@ const updateCourse = async (req, res, next) => {
       return res.status(403).json({ message: 'You can only edit your own courses' });
     }
 
-    const { title, description, category, price } = req.body;
+    const { title, description, category, price, image } = req.body;
     if (title !== undefined) course.title = title;
     if (description !== undefined) course.description = description;
     if (category !== undefined) course.category = category;
     if (price !== undefined) course.price = price;
+    if (image !== undefined) course.image = image;
 
     const updatedCourse = await course.save();
     res.status(200).json(updatedCourse);
