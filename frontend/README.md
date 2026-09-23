@@ -124,3 +124,4 @@ Open the local URL it prints (usually `http://localhost:5173`).
 **Raza Ahmed Mughal**
 GitHub: [razamughal333](https://github.com/razamughal333)
 Portfolio: [razamughal333.github.io/Portfolio](https://razamughal333.github.io/Portfolio)
+Linkedin: [https://www.linkedin.com/in/raza-ahmed333/]
