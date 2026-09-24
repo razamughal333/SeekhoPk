@@ -1,4 +1,4 @@
-# SeekhoPakistan (SeekhoPK)
+# SeekhoPakistan (SeekhoPK) - HunarmandPunjab
 
 A full-stack MERN Learning Management System where students can browse and enroll in courses, watch lessons and track their progress, instructors can create and manage what they teach and admin can manage both. Built as a university final project (MERN Stack Web Development).
 
