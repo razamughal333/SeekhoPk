@@ -1,9 +1,6 @@
 # SeekhoPakistan (SeekhoPK)
 
-A full-stack MERN Learning Management System where students can browse
-and enroll in courses, watch lessons and track their progress, and
-instructors can create and manage what they teach. Built as a
-university final project (MERN Stack Web Development).
+A full-stack MERN Learning Management System where students can browse and enroll in courses, watch lessons and track their progress, instructors can create and manage what they teach and admin can manage both. Built as a university final project (MERN Stack Web Development).
 
 **Live demo:** _add your deployed link here once deployed_
 **Repository:** https://github.com/razamughal333/SeekhoPk
