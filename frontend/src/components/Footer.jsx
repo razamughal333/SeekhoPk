@@ -68,8 +68,12 @@ export default function Footer() {
 
       <div className="border-t-2 border-bg/15">
         <div className="mx-auto max-w-6xl px-6 py-5">
-          <p className="font-body text-xs text-bg/50">
-            Created by Raza Ahmed Mughal
+          <p className="text-center font-body text-xs text-bg/50">
+            Designed & Developed by{" "}
+            <span className="text-green-600"> Raza Ahmed</span>
+          </p>
+          <p className="text-center font-body text-xs text-bg/50">
+            © 2026 • All Rights Reserved
           </p>
         </div>
       </div>
