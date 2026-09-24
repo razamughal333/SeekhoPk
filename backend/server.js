@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const lessonRoutes = require('./routes/lessonRoutes');
 
 // Connect to MongoDB
 connectDB();
@@ -26,8 +27,9 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
-app.use('/api', enrollmentRoutes); // exposes /api/enroll and /api/my-courses
+app.use('/api', enrollmentRoutes); // exposes /api/enroll, /api/my-courses, /api/complete-lesson
 app.use('/api/admin', adminRoutes);
+app.use('/api/lessons', lessonRoutes);
 
 // 404 + error handling (must be last)
 app.use(notFound);

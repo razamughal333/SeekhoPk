@@ -1,5 +1,6 @@
 const Enrollment = require('../models/Enrollment');
 const Course = require('../models/Course');
+const Lesson = require('../models/Lesson');
 
 // @route  POST /api/enroll
 // @access Private (Student)
@@ -51,4 +52,44 @@ const getMyCourses = async (req, res, next) => {
   }
 };
 
-module.exports = { enrollInCourse, getMyCourses };
+// @route  POST /api/complete-lesson
+// @access Private (Student)
+const completeLesson = async (req, res, next) => {
+  try {
+    const { courseId, lessonId } = req.body;
+
+    if (!courseId || !lessonId) {
+      return res.status(400).json({ message: 'courseId and lessonId are required' });
+    }
+
+    const enrollment = await Enrollment.findOne({ student: req.user._id, course: courseId });
+    if (!enrollment) {
+      return res.status(404).json({ message: 'You are not enrolled in this course' });
+    }
+
+    const lesson = await Lesson.findById(lessonId);
+    if (!lesson || lesson.course.toString() !== courseId) {
+      return res.status(404).json({ message: 'Lesson not found for this course' });
+    }
+
+    const alreadyDone = enrollment.completedLessons.some(
+      (id) => id.toString() === lessonId
+    );
+    if (!alreadyDone) {
+      enrollment.completedLessons.push(lessonId);
+    }
+
+    const totalLessons = await Lesson.countDocuments({ course: courseId });
+    enrollment.progress =
+      totalLessons > 0
+        ? Math.round((enrollment.completedLessons.length / totalLessons) * 100)
+        : 0;
+
+    await enrollment.save();
+    res.status(200).json(enrollment);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { enrollInCourse, getMyCourses, completeLesson };
