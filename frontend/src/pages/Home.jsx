@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import CourseRow from "../components/CourseRow";
 import ImageWithFallback from "../components/ImageWithFallback";
+import { HERO_BANNER_URL } from "../config/siteImages";
 import { getCourses } from "../services/courseService";
 
 const routes = [

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import ImageWithFallback from '../components/ImageWithFallback';
 import { useAuth } from '../context/AuthContext';
 import { getCourseById, deleteCourse } from '../services/courseService';
-import { enrollInCourse } from '../services/enrollmentService';
+import { enrollInCourse, getMyCourses } from '../services/enrollmentService';
 
 export default function CourseDetail() {
   const { id } = useParams();
@@ -16,6 +16,7 @@ export default function CourseDetail() {
   const [error, setError] = useState('');
   const [enrollStatus, setEnrollStatus] = useState(null); // null | 'loading' | 'success' | 'error'
   const [enrollMessage, setEnrollMessage] = useState('');
+  const [alreadyEnrolled, setAlreadyEnrolled] = useState(false);
 
   useEffect(() => {
     getCourseById(id)
@@ -24,12 +25,24 @@ export default function CourseDetail() {
       .finally(() => setLoading(false));
   }, [id]);
 
+  useEffect(() => {
+    if (user?.role !== 'student') return;
+    getMyCourses()
+      .then(({ data }) => {
+        if (data.some((enr) => enr.course._id === id)) {
+          setAlreadyEnrolled(true);
+        }
+      })
+      .catch(() => {});
+  }, [id, user]);
+
   const handleEnroll = async () => {
     setEnrollStatus('loading');
     try {
       await enrollInCourse(id);
       setEnrollStatus('success');
-      setEnrollMessage("You're enrolled. Find this course on your dashboard.");
+      setAlreadyEnrolled(true);
+      setEnrollMessage("You're enrolled.");
     } catch (err) {
       setEnrollStatus('error');
       setEnrollMessage(err.response?.data?.message || 'Enrollment failed. Please try again.');
@@ -118,7 +131,16 @@ export default function CourseDetail() {
               Rs {course.price?.toLocaleString('en-PK')}
             </p>
 
-            {user?.role === 'student' && (
+            {user?.role === 'student' && alreadyEnrolled && (
+              <Link
+                to={`/courses/${id}/learn`}
+                className="mt-5 block w-full border-2 border-ink bg-teal py-2.5 text-center font-body font-medium text-bg transition-colors hover:bg-teal-dark"
+              >
+                Continue learning
+              </Link>
+            )}
+
+            {user?.role === 'student' && !alreadyEnrolled && (
               <button
                 onClick={handleEnroll}
                 disabled={enrollStatus === 'loading' || enrollStatus === 'success'}

@@ -77,6 +77,12 @@ export default function InstructorDashboard() {
                 </div>
                 <div className="flex gap-3">
                   <Link
+                    to={`/dashboard/instructor/courses/${course._id}/lessons`}
+                    className="border-2 border-ink px-3 py-1.5 font-body text-sm font-medium text-ink hover:bg-ink hover:text-bg"
+                  >
+                    Lessons
+                  </Link>
+                  <Link
                     to={`/courses/${course._id}/edit`}
                     className="border-2 border-ink px-3 py-1.5 font-body text-sm font-medium text-ink hover:bg-ink hover:text-bg"
                   >

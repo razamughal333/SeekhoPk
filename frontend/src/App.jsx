@@ -14,6 +14,8 @@ import StudentDashboard from './pages/dashboards/StudentDashboard';
 import InstructorDashboard from './pages/dashboards/InstructorDashboard';
 import AdminDashboard from './pages/dashboards/AdminDashboard';
 import CourseForm from './pages/dashboards/CourseForm';
+import LessonManager from './pages/dashboards/LessonManager';
+import CourseLearn from './pages/CourseLearn';
 
 export default function App() {
   return (
@@ -56,6 +58,22 @@ export default function App() {
           element={
             <ProtectedRoute roles={['instructor', 'admin']}>
               <CourseForm />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/instructor/courses/:id/lessons"
+          element={
+            <ProtectedRoute roles={['instructor', 'admin']}>
+              <LessonManager />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/courses/:id/learn"
+          element={
+            <ProtectedRoute roles={['student']}>
+              <CourseLearn />
             </ProtectedRoute>
           }
         />

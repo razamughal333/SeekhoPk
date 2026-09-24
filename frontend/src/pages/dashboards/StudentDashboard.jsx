@@ -55,7 +55,7 @@ export default function StudentDashboard() {
               >
                 <div>
                   <Link
-                    to={`/courses/${enr.course._id}`}
+                    to={`/courses/${enr.course._id}/learn`}
                     className="font-display text-xl font-medium text-ink hover:text-teal"
                   >
                     {enr.course.title}

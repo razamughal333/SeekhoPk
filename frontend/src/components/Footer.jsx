@@ -9,7 +9,7 @@ const siteLinks = [
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/razamughal333" },
   { label: "Portfolio", href: "https://razamughal333.github.io/Portfolio" },
-  { label: "Instagram", href: "https://www.instagram.com/raza_mughal_333/" },
+  { label: "Instagram", href: "https://instagram.com/raza_mughal_333" },
   { label: "Linkedin", href: "https://www.linkedin.com/in/raza-ahmed333/" },
 ];
 
@@ -68,12 +68,8 @@ export default function Footer() {
 
       <div className="border-t-2 border-bg/15">
         <div className="mx-auto max-w-6xl px-6 py-5">
-          <p className="font-body text-xs text-bg/50 text-center">
-            Designed & Developed by
-            <span className="text-green-700"> Raza Ahmed</span>
-          </p>
-          <p className="font-body text-xs text-bg/50 text-center">
-            © 2026 • All Rights Reserved
+          <p className="font-body text-xs text-bg/50">
+            Created by Raza Ahmed Mughal
           </p>
         </div>
       </div>

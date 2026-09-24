@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 const links = [
   { label: "GitHub", href: "https://github.com/razamughal333" },
   { label: "Portfolio", href: "https://razamughal333.github.io/Portfolio" },
-  { label: "Instagram", href: "https://www.instagram.com/raza_mughal_333/" },
+  { label: "Instagram", href: "https://instagram.com/raza_mughal_333" },
   { label: "Linkedin", href: "https://www.linkedin.com/in/raza-ahmed333/" },
 ];
 
